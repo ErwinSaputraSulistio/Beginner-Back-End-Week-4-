@@ -22,7 +22,7 @@
 4.) Postman's API Documentation (CRUD) => https://documenter.getpostman.com/view/14851668/Tz5jg1fd  
 
 ## 1.) Algorithms combined with Flowcharts (user only)
-#### 1.1) "Create"
+#### 1.1) CREATE
 1.) Start.   
 2.) First, take inputs from the user (real name, username, email, password).  
 3.) After that, make some variables of user's input (realName, userName, userEmail, userPassword) with values from the body request of them (req.body).  
@@ -32,13 +32,13 @@
 7.) Now, we make a statement for the result, if there's no error then give the result, else console an error message.  
 8.) At last, execute the function newUserData(newData) and in no time the result will shown based on the statement in number 7 as JSON format.   
 9.) End.  
-#### 1.2) "Read"
+#### 1.2) READ
 1.) Start.  
 2.) First, take GET or the READ request from the user (with no data input, ofc).  
 3.) After that, we just need to query user's database with a line syntax that selecting all data from the database then returns all of them in JSON format.  
 4.) Lastly, the result will shown to you, as easy as that!  
 5.) End.  
-#### 1.3) "Update"
+#### 1.3) UPDATE
 1.) Start.   
 2.) First, take inputs from the user (targeted user's id to be updated, real name, username, email, password).  
 3.) After that, make some variables of user's input (realName, userName, userEmail, userPassword) with values from the body request of them (req.body).  
@@ -48,10 +48,10 @@
 7.) Now, we make a statement for the result, if there's no error then give the result, else console an error message.  
 8.) At last, execute the function updatedUserData(updatedData) and in no time the result will shown based on the statement in number 7 as JSON format.    
 9.) End.  
-#### 1.4) "Delete"
+#### 1.4) DELETE
 1.) Start.  
 2.) First, take input from the user (targeted id to be deleted).  
-3.) After that, we just need to query user's database to delete the targeted data based on inputted user's id.
+3.) After that, we just need to query user's database to delete the targeted data based on inputted user's id.  
 4.) Lastly, the targeted data will be deleted, very simple right?    
 5.) End.  
 
