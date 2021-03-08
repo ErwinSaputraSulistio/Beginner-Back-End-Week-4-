@@ -17,7 +17,7 @@ A task of Arkademy (Beginner Backend - Week 4), to create databases and CRUD fea
 1.) Algorithms (user only)  
 2.) Flowcharts (user only)  
 3.) This project's overview/screenshots (all)  
-4.) Postman's API Documentation (CRUD) => https://documenter.getpostman.com/view/14851668/Tz5jg1fd  
+4.) Postman's API Documentation - URL link (CRUD) => https://documenter.getpostman.com/view/14851668/Tz5jg1fd  
 
 ## 1.) Algorithms with Flowcharts (user only)
 #### 1.1) CREATE
@@ -30,12 +30,16 @@ A task of Arkademy (Beginner Backend - Week 4), to create databases and CRUD fea
 7.) Now, we make a statement for the result, if there's no error then give the result, else console an error message.  
 8.) At last, execute the function newUserData(newData) and in no time the result will shown based on the statement in number 7 as JSON format.   
 9.) End.  
+
+![Create (users)](https://user-images.githubusercontent.com/77045083/110352139-21fb3f00-8068-11eb-869a-1708d5132beb.png)
 #### 1.2) READ
 1.) Start.  
 2.) First, take GET or the READ request from the user (with no data input, ofc).  
 3.) After that, we just need to query user's database with a line syntax that selecting all data from the database then returns all of them in JSON format.  
-4.) Lastly, the result will shown to you, as easy as that!  
+4.) Lastly, the result will be shown to you.  
 5.) End.  
+
+![Read (users)](https://user-images.githubusercontent.com/77045083/110352695-cbdacb80-8068-11eb-856a-eae5bd7e4afe.png)
 #### 1.3) UPDATE
 1.) Start.   
 2.) First, take inputs from the user (targeted user's id to be updated, real name, username, email, password).  
@@ -46,26 +50,38 @@ A task of Arkademy (Beginner Backend - Week 4), to create databases and CRUD fea
 7.) Now, we make a statement for the result, if there's no error then give the result, else console an error message.  
 8.) At last, execute the function updatedUserData(updatedData) and in no time the result will shown based on the statement in number 7 as JSON format.    
 9.) End.  
+
+![Update (users)](https://user-images.githubusercontent.com/77045083/110352147-245d9900-8068-11eb-833a-0516a6276bd6.png)
 #### 1.4) DELETE
 1.) Start.  
 2.) First, take input from the user (targeted id to be deleted).  
 3.) After that, we just need to query user's database to delete the targeted data based on inputted user's id.  
-4.) Lastly, the targeted data will be deleted, very simple right?    
+4.) Lastly, the targeted data will be erased.  
 5.) End.  
 
+![Delete (users)](https://user-images.githubusercontent.com/77045083/110352150-258ec600-8068-11eb-8340-3398e325a86d.png)
 ## 2.) Project's Overview / Screenshots (all)
 #### 2.1) USERS  
 ![Create - Users](https://user-images.githubusercontent.com/77045083/110342396-ef4c4900-805d-11eb-8bd4-891b760e18ba.png)
+
 ![Read - Users](https://user-images.githubusercontent.com/77045083/110342402-f1160c80-805d-11eb-8f48-44a8e63e211e.png)
+
 ![Update - Users](https://user-images.githubusercontent.com/77045083/110342405-f2473980-805d-11eb-9475-15d51e33dae5.png)
+
 ![Delete - Users](https://user-images.githubusercontent.com/77045083/110342414-f410fd00-805d-11eb-99ee-2669354e6b5b.png)
 #### 2.2) TICKETS  
 ![Create - Tickets](https://user-images.githubusercontent.com/77045083/110342935-8addb980-805e-11eb-8307-37bce724df91.png)
+
 ![Read - Tickets](https://user-images.githubusercontent.com/77045083/110342945-8d401380-805e-11eb-9536-55f4065fcfd3.png)
+
 ![Update - Tickets](https://user-images.githubusercontent.com/77045083/110343286-ee67e700-805e-11eb-81bb-f524a425188b.png)
+
 ![Delete - Tickets](https://user-images.githubusercontent.com/77045083/110342963-916c3100-805e-11eb-8764-8ecfbe8baeee.png)
 #### 2.3) TRANSACTIONS  
 ![Create - Transactions](https://user-images.githubusercontent.com/77045083/110342996-9cbf5c80-805e-11eb-987c-76701e1b84b1.png)
+
 ![Read - Transactions](https://user-images.githubusercontent.com/77045083/110343006-9f21b680-805e-11eb-8ec2-6a989a8ccc9d.png)
+
 ![Update - Transactions](https://user-images.githubusercontent.com/77045083/110343015-a052e380-805e-11eb-8458-186ad3239d0b.png)
+
 ![Delete - Transactions](https://user-images.githubusercontent.com/77045083/110343023-a2b53d80-805e-11eb-9edd-fa2ebd86b252.png)
