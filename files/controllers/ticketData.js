@@ -1,60 +1,73 @@
-const ticketDataModel = require("../models/ticketData")
+const ticketDataModel = require('../models/ticketData')
+const { v4: uuidv4 } = require('uuid')
+const statusCode = require("./status")
 
-//create
+// create
 exports.createTicketData = (req, res) => {
-   const {filmName, filmGenre, showDate, startTime, endTime, seatPosition, ticketPrice} = req.body
-   const newData = {
-      filmName, 
-      filmGenre, 
-      showDate, 
-      startTime, 
-      endTime, 
-      seatPosition, 
-      ticketPrice,
-      createdAt: new Date(),
-      updatedAt: new Date()
-   }
-   ticketDataModel.newTicketData(newData)
-   .then((result) => {res.json({createdData: result})})
-   .catch((err) => {console.log(err)})
+  const { movieName, movieGenre, ticketPrice } = req.body
+  const newData = {
+    ticketId: uuidv4(),
+    movieName,
+    movieGenre,
+    ticketPrice,
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+  ticketDataModel.newTicketData(newData)
+    .then(() => { statusCode.statRes(res, 200, 'Berhasil memasukkan film baru!') })
+    .catch((err) => { console.log(err) })
 }
 
-//read
-exports.readTicketData = (req,res) => {
-   ticketDataModel.getTicketData()
-   .then((result) => {res.json({readedData: result})})
-   .catch((err) => {console.log(err)})
+// read
+exports.readTicketDataPerPage = (req, res) => {
+  const checkQuery = req.query
+  const queryKeys = Object.keys(checkQuery)
+  if (queryKeys.includes('page') == true && queryKeys.includes('limit') == true) {
+    const queryPages = parseInt(checkQuery.page)
+    const queryLimits = parseInt(checkQuery.limit)
+    if (Number.isNaN(queryPages) == false && Number.isNaN(queryLimits) == false) {
+      ticketDataModel.getTicketDataPerPage(queryPages, queryLimits)
+      .then((result) => {
+        res.json({
+          outputData: result,
+          previousPage: 'localhost:2000/tickets?page=' + String(queryPages - 1) + '&limit=' + String(queryLimits),
+          nextPage: 'localhost:2000/tickets?page=' + String(queryPages + 1) + '&limit=' + String(queryLimits)
+        })
+      })
+      .catch((err) => { console.log(err) })
+    }
+    else { statusCode.queryNaN(res) }
+  } 
+  else { statusCode.invalidQuery(res) }
 }
-exports.readTicketByName = (req, res) => {
-   const TicketName = req.params.name
-   ticketDataModel.getTicketByName(TicketName)
-   .then((result) => {res.json({readedData: result})})
-   .catch((err) => {console.log(err)})
+exports.readTicketNameBySearch = (req, res) => {
+  ticketNameQuery = Object.values(req.query)
+  if (Object.keys(req.query) == 'movieName') {
+    ticketDataModel.getTicketNameBySearch(ticketNameQuery)
+      .then((result) => { res.json({ callResult: 'Success', statusCode: 200, outputData: result , errorHandling: null }) })
+      .catch((err) => { res.status(400).send(err.message) })
+  } else { statusCode.invalidQuery(res) }
 }
 
-//update
+// update
 exports.updateTicketData = (req, res) => {
-   const ticketID = req.params.id
-   const {filmName, filmGenre, showDate, startTime, endTime, seatPosition, ticketPrice} = req.body
-   const changeData = {
-      filmName, 
-      filmGenre, 
-      showDate, 
-      startTime, 
-      endTime, 
-      seatPosition, 
-      ticketPrice,
-      updatedAt: new Date()
-   }
-   ticketDataModel.changeTicketData(changeData, ticketID)
-   .then((result) => {res.json({updatedData: result})})
-   .catch((err) => {console.log(err)})
+  const ticketId = req.params.id
+  const { movieName, movieGenre, ticketPrice } = req.body
+  const changeData = {
+    movieName,
+    movieGenre,
+    ticketPrice,
+    updatedAt: new Date()
+  }
+  ticketDataModel.changeTicketData(changeData, ticketId)
+    .then(() => { statusCode.statRes(res, 200, 'Berhasil ubah data film!') })
+    .catch((err) => { console.log(err) })
 }
 
-//delete
+// delete
 exports.deleteTicketData = (req, res) => {
-   const ticketID = req.params.id
-   ticketDataModel.removeTicketData(ticketID)
-   .then((result) => {res.json({deletedData: result})})
-   .catch((err) => {console.log(err)})
+  const ticketId = req.params.id
+  ticketDataModel.removeTicketData(ticketId)
+    .then(() => { statusCode.statRes(res, 200, 'Berhasil hapus data film!') })
+    .catch((err) => { console.log(err) })
 }

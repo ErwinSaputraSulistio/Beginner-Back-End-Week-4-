@@ -1,50 +1,49 @@
-const db = require("../configs/db")
+const db = require('../configs/db')
 
-//create
+// create
 exports.newTicketData = (newData) => {
-   return new Promise((resolve, reject) => {
-      db.query("INSERT INTO ticketdata SET ?", newData, (err, result) => {
-         if(!err) {resolve(result)}
-         else {reject(err)}
-      })
-   })
+  return new Promise((resolve, reject) => {
+    db.query('INSERT INTO ticket_data SET ?', newData, (err, result) => {
+      if (!err) { resolve(result) } else { reject(err) }
+    })
+  })
 }
 
-//read
-exports.getTicketData = () => {
-   return new Promise((resolve, reject) => {
-      db.query("SELECT * FROM ticketdata", (err, result) => {
-         if(!err) {resolve(result)}
-         else {reject(err)}
-      })
-   })
+// read
+exports.getTicketDataPerPage = (queryPages, queryLimits) => {
+  const calcPaginationLogics = queryPages * queryLimits - queryLimits
+  let inputLimitOrNot = ''
+  let inputOffsetOrNot = ''
+  queryPages !== 0 ? (inputLimitOrNot += 'LIMIT ' + queryLimits + ' ') && (inputOffsetOrNot += 'OFFSET ' + calcPaginationLogics) : null
+  return new Promise((resolve, reject) => {
+    db.query('SELECT * FROM ticket_data ORDER BY updatedAt DESC ' + inputLimitOrNot + inputOffsetOrNot + ';', (err, result) => {
+      if (!err && result.length !== 0) { resolve(result) } else if (result.length == 0) { resolve('More film coming soon ~') } else { reject(err) }
+    })
+  })
 }
-exports.getTicketByName = (searchedFilmName) => {
-   return new Promise((resolve, reject) => {
-      db.query("SELECT * FROM ticketdata WHERE filmName like '%" + searchedFilmName + "%'", (err, result) => {
-         result.length == 0 && resolve("Not Found")
-         if(!err) {resolve(result)}
-         else {reject(err)}
-      })
-   })
+exports.getTicketNameBySearch = (searchedFilmName) => {
+  return new Promise((resolve, reject) => {
+    db.query("SELECT * FROM ticket_data WHERE movieName like '%" + searchedFilmName + "%' ORDER BY updatedAt DESC", (err, result) => {
+      result.length == 0 && resolve('Judul film yang dicari tidak ditemukan!')
+      if (!err) { resolve(result) } else { reject(err) }
+    })
+  })
 }
 
-//update
+// update
 exports.changeTicketData = (changeData, ticketID) => {
-   return new Promise((resolve, reject) => {
-      db.query("UPDATE ticketdata SET ? WHERE ticketID = ?", [changeData, ticketID], (err, result) => {
-         if(!err) {resolve(result)}
-         else {reject(err)}
-      })
-   })
+  return new Promise((resolve, reject) => {
+    db.query('UPDATE ticket_data SET ? WHERE ticketId = ?', [changeData, ticketID], (err, result) => {
+      if (!err) { resolve(result) } else { reject(err) }
+    })
+  })
 }
 
-//delete
+// delete
 exports.removeTicketData = (ticketID) => {
-   return new Promise((resolve, reject) => {
-      db.query('DELETE FROM ticketdata WHERE ticketID = ?', ticketID, (err, result)=>{
-         if(!err) {resolve(result)}
-         else {reject(err)}
-      })
-   })
+  return new Promise((resolve, reject) => {
+    db.query('DELETE FROM ticket_data WHERE ticketId = ?', ticketID, (err, result) => {
+      if (!err) { resolve(result) } else { reject(err) }
+    })
+  })
 }
