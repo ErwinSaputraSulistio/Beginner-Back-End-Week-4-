@@ -1,5 +1,5 @@
 const userDataModel = require('../models/userData')
-const statusCode = require("./status")
+const statusCode = require('./status')
 
 // hash password - set up bcrypt
 const bcrypt = require('bcrypt')

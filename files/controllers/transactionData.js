@@ -1,6 +1,6 @@
 const transactionDataModel = require('../models/transactionData')
 const { v4: uuidv4 } = require('uuid')
-const statusCode = require("./status")
+const statusCode = require('./status')
 
 // create
 exports.createTransactionData = (req, res) => {
@@ -31,18 +31,16 @@ exports.readTransactionDataPerPage = (req, res) => {
     const queryLimits = parseInt(checkQuery.limit)
     if (Number.isNaN(queryPages) == false && Number.isNaN(queryLimits) == false) {
       transactionDataModel.getTransactionDataPerPage(queryPages, queryLimits)
-      .then((result) => {
-        res.json({
-          outputData: result,
-          previousPage: 'localhost:2000/transactions?page=' + String(queryPages - 1) + '&limit=' + String(queryLimits),
-          nextPage: 'localhost:2000/transactions?page=' + String(queryPages + 1) + '&limit=' + String(queryLimits)
+        .then((result) => {
+          res.json({
+            outputData: result,
+            previousPage: 'localhost:2000/transactions?page=' + String(queryPages - 1) + '&limit=' + String(queryLimits),
+            nextPage: 'localhost:2000/transactions?page=' + String(queryPages + 1) + '&limit=' + String(queryLimits)
+          })
         })
-      })
-      .catch((err) => { console.log(err) })
-    }
-    else { statusCode.queryNaN(res) }
-  } 
-  else { statusCode.invalidQuery(res) }
+        .catch((err) => { console.log(err) })
+    } else { statusCode.queryNaN(res) }
+  } else { statusCode.invalidQuery(res) }
 }
 exports.readTransactionDataById = (req, res) => {
   const userId = req.params.id
