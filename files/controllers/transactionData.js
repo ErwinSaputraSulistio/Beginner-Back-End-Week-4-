@@ -26,10 +26,10 @@ exports.createTransactionData = (req, res) => {
 exports.readTransactionDataPerPage = (req, res) => {
   const checkQuery = req.query
   const queryKeys = Object.keys(checkQuery)
-  if (queryKeys.includes('page') == true && queryKeys.includes('limit') == true) {
+  if (queryKeys.includes('page') === true && queryKeys.includes('limit') === true) {
     const queryPages = parseInt(checkQuery.page)
     const queryLimits = parseInt(checkQuery.limit)
-    if (Number.isNaN(queryPages) == false && Number.isNaN(queryLimits) == false) {
+    if (Number.isNaN(queryPages) === false && Number.isNaN(queryLimits) === false) {
       transactionDataModel.getTransactionDataPerPage(queryPages, queryLimits)
         .then((result) => {
           res.json({

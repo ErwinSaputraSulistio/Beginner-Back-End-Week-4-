@@ -20,7 +20,7 @@ exports.getUserData = () => {
 exports.getUserDataById = (userId) => {
   return new Promise((resolve, reject) => {
     db.query('SELECT * FROM user_data WHERE userId = ?', userId, (err, result) => {
-      result.length == 0 && resolve('Tidak dapat menemukan user dengan ID yang dicari!')
+      result.length === 0 && resolve('Tidak dapat menemukan user dengan ID yang dicari!')
       if (!err) { resolve(result) } else { reject(err) }
     })
   })

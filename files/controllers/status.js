@@ -6,5 +6,7 @@ exports.statRes = (res, status, result) => {
   res.status(status).json(output)
 }
 
-exports.invalidQuery = (res) => { res.status(400).json({ callResult: 'ERROR', statusCode: 400, errSource: 'Invalid query' }) }
-exports.queryNaN = (res) => { res.status(400).json({ callResult: 'ERROR', statusCode: 400, errSource: 'Query input is not a number' }) }
+exports.invalidQuery = (res) => { res.status(400).json({ callResult: 'Failed', statusCode: 400, errorDetail: 'Invalid query' }) }
+exports.queryNaN = (res) => { res.status(400).json({ callResult: 'Faild', statusCode: 400, errorDetail: 'Query input is not a number' }) }
+exports.notFoundFilm = (res) => { res.status(404).json({ callResult: 'Failed', statusCode: 404, errorDetail: 'Judul film yang dicari tidak ditemukan!' }) }
+exports.sortGenreFailed = (res) => { res.status(404).json({ callResult: 'Failed', statusCode: 404, errorDetail: 'Sort gagal, tidak ditemukan film dengan genre yang sesuai!' }) }
