@@ -16,7 +16,7 @@ A task of Arkademy (Beginner Backend - Week 4), to create databases and CRUD fea
 #### Then, what's included in this README.md?    
 1.) All about this project  
 2.) How to install?  
-3.) Postman's API Documentation - URL link (CRUD) => https://documenter.getpostman.com/view/14851668/Tz5jg1fd
+3.) Postman's API Documentation - URL link (CRUD) => https://documenter.getpostman.com/view/14851668/Tz5nbJTD
 
 
 ## How to install & start?  
